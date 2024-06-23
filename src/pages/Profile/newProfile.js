@@ -3,6 +3,10 @@ import { useState } from "react";
 import skillsData from './countries.json';
 import EducationForm from "./EducationForm";
 import ExperienceForm from "./ExperienceForm";
+import CityDropdown from "./cityDropdown";
+import ComboBox from "./comboBox";
+import CityComboBox from "./newCombox";
+import CityComboBox1 from "./MaterialDropdown";
 
 const NewProfile = () => {
   
@@ -170,6 +174,81 @@ const NewProfile = () => {
       errors.email = '';
     }
 
+
+    // currentLocation validation
+    if (!formData.currentLocation.trim()) {
+      errors.currentLocation = 'currentLocation is required';
+    } else {
+      errors.currentLocation = '';
+    }
+
+    // currentLocation validation
+    if (!formData.prefLocation.trim()) {
+      errors.prefLocation = 'prefLocation is required';
+    } else {
+      errors.prefLocation = '';
+    }
+
+        // currentLocation validation
+        if (!formData.currentOrganization.trim()) {
+          errors.currentOrganization = 'currentOrganization is required';
+        } else {
+          errors.currentOrganization = '';
+        }
+
+        
+
+        if (!formData.currentCtc.trim()) {
+          errors.currentCtc = 'currentCtc is required';
+        } else {
+          errors.currentCtc = '';
+        }
+
+        
+
+        if (!formData.noticePeriod.trim()) {
+          errors.noticePeriod = 'noticePeriod is required';
+        } else {
+          errors.noticePeriod = '';
+        }
+
+        
+
+        if (!formData.totExp.trim()) {
+          errors.totExp = 'totExp is required';
+        } else {
+          errors.totExp = '';
+        }
+
+        
+
+        if (!formData.issueDate.trim()) {
+          errors.issueDate = 'issueDate is required';
+        } else {
+          errors.issueDate = '';
+        }
+
+        
+
+        if (!formData.expiryDate.trim()) {
+          errors.expiryDate = 'expiryDate is required';
+        } else {
+          errors.expiryDate = '';
+        }
+
+        
+        if (!formData.sourceType.trim()) {
+          errors.sourceType = 'sourceType is required';
+        } else {
+          errors.sourceType = '';
+        }
+
+        
+        if (!formData.sourceName.trim()) {
+          errors.sourceName = 'sourceName is required';
+        } else {
+          errors.sourceName = '';
+        }
     /*if (!formData.dob.trim()) {
       //errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -355,7 +434,7 @@ const NewProfile = () => {
           required
           style={{ borderColor: errors.dob ? 'red' : '' }}
         />
-         {errors.phone && <span style={{ color: 'red' }}>{errors.phone}</span>}
+         {errors.dob && <span style={{ color: 'red' }}>{errors.dob}</span>}
       </div>
       <div className="form-group column">
         <label htmlFor="gender">Gender*:</label>
@@ -633,6 +712,10 @@ const NewProfile = () => {
           onChange={handleInputChange}
         />
       </div>
+      <div className="form-group column">
+        <label htmlFor="preferredJob">Preferred Job:</label>
+        <CityComboBox1/>
+      </div>
       </div>
 
       <div className="row heading heading">
@@ -656,7 +739,12 @@ const NewProfile = () => {
        </div>  
      
     </form>
+    {/*<CityDropdown/>
+    <ComboBox/>
+    <CityComboBox></CityComboBox>
+   */}
     </div>
+
   );
   
 };
