@@ -34,10 +34,10 @@ const Sidebar = () => {
             </div>
           </Link>
           <Link
-            to={"/friends"}
+            to={"/requirement"}
             className={`${styles.navItem}  ${isActive(
               location.pathname,
-              "/friends"
+              "/requirement"
             )}`}
           >
             {" "}
@@ -49,10 +49,10 @@ const Sidebar = () => {
             </div>
           </Link>
           <Link
-            to={"/about"}
+            to={"/entity"}
             className={`${styles.navItem}  ${isActive(
               location.pathname,
-              "/about"
+              "/entity"
             )}`}
           >
             {" "}
@@ -60,7 +60,7 @@ const Sidebar = () => {
               <div className={styles.svgIcon}>
                 <AboutIcon />
               </div>
-              <div className={styles.menuText}>about</div>
+              <div className={styles.menuText}>Enity</div>
             </div>
           </Link>
         </nav>

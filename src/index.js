@@ -16,8 +16,8 @@ root.render(
       <Routes>
         <Route path='/' element={<App />}>
           <Route path='profile' element={<Profile />} />
-          <Route path='about' element={<About />} />
-          <Route path='friends' element={<Friends />} />
+          <Route path='entity' element={<About />} />
+          <Route path='requirement' element={<Friends />} />
         </Route>
         <Route path='login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
