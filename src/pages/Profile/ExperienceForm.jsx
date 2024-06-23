@@ -25,6 +25,30 @@ const ExperienceForm = () => {
     setExperienceDetails(experienceDetails.filter((_, i) => i !== index));
   };
 
+  const [fromDate, setFromDate] = useState('');
+  const [toDate, setToDate] = useState('');
+
+  const handleFromDateChange = (e) => {
+    const value = e.target.value;
+    setFromDate(value);
+    validateDates(value, toDate);
+  };
+
+  const handleToDateChange = (e) => {
+    const value = e.target.value;
+    setToDate(value);
+    validateDates(fromDate, value);
+  };
+
+
+  const validateDates = (from, to) => {
+    if (from && to && new Date(from) >= new Date(to)) {
+      //setError('The "to" date must be greater than the "from" date.');
+    } else {
+      //setError('');
+    }
+  };
+
   return (
     <div className="form-group row">
             {/*<div>Current Theme: {theme}</div>
@@ -43,8 +67,10 @@ const ExperienceForm = () => {
                 const updatedDetails = [...prevState];
                 updatedDetails[index].companyName = e.target.value;
                 return updatedDetails;
-              })
+              }) 
             }
+
+            required
           />
         </td>
         <td style={{paddingLeft: 20}}>
@@ -59,11 +85,12 @@ const ExperienceForm = () => {
                 return updatedDetails;
               })
             }
+            required
           />
           </td>
           <td style={{paddingLeft: 20}}>
           <input
-            type="text"
+            type="date"
             placeholder="StartDate"
             value={education.startDate}
             onChange={(e) =>
@@ -72,11 +99,11 @@ const ExperienceForm = () => {
                 updatedDetails[index].startDate = e.target.value;
                 return updatedDetails;
               })
-            }
+            } required 
           /></td>
           <td style={{paddingLeft: 20}}>
           <input
-            type="text"
+            type="date"
             placeholder="EndDate"
             value={education.endDate}
             onChange={(e) =>
@@ -85,13 +112,13 @@ const ExperienceForm = () => {
                 updatedDetails[index].endDate = e.target.value;
                 return updatedDetails;
               })
-            }
+            } required
           />
           </td><td style={{paddingLeft: 20}}>
           <button onClick={(e) => handleRemoveExperience(index, e)}>Remove</button>
           </td>
           </tr>
-      ))}
+      ))} 
       <div>
       <button className='logOutBtn' onClick={handleAddExperience}>Add</button>
       </div>

@@ -77,7 +77,7 @@ const EducationForm = () => {
           /></td>
           <td>
           <input
-            type="text"
+            type="month" pattern="\d{2}/\d{4}"
             placeholder="Year of Passing"
             value={education.yearOfPassing}
             onChange={(e) =>
