@@ -521,25 +521,28 @@ const NewProfile = () => {
       </div>
       <div className="form-group column">
         <label htmlFor="currentLocation">Current Location*:</label>
-        <input
+        {/*<input
           type="text"
           id="currentLocation"
           name="currentLocation"
           value={formData.currentLocation}
           onChange={handleInputChange}
           required
-        />
+        />*/}
+        <CityComboBox1/>
       </div>
       <div className="form-group column">
         <label htmlFor="prefLocation">Pref Location*:</label>
-        <input
+        {/*<input
           type="text"
           id="prefLocation"
           name="prefLocation"
           value={formData.prefLocation}
           onChange={handleInputChange}
           required
-        />
+        />*/}
+        <CityComboBox1/>
+
       </div>
       <div className="form-group column">
       <label htmlFor="currentOrganization">Current Organization*:</label>
@@ -712,10 +715,10 @@ const NewProfile = () => {
           onChange={handleInputChange}
         />
       </div>
-      <div className="form-group column">
+      {/*<div className="form-group column">
         <label htmlFor="preferredJob">Preferred Job:</label>
         <CityComboBox1/>
-      </div>
+      </div>*/}
       </div>
 
       <div className="row heading heading">
