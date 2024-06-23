@@ -117,10 +117,13 @@ const ExperienceForm = () => {
           </td><td style={{paddingLeft: 20}}>
           <button onClick={(e) => handleRemoveExperience(index, e)}>Remove</button>
           </td>
+          <td style={{paddingLeft: 20}}>
+          <button onClick={handleAddExperience}>Add</button>
+          </td>
           </tr>
       ))} 
       <div>
-      <button className='logOutBtn' onClick={handleAddExperience}>Add</button>
+      
       </div>
     </div>
     

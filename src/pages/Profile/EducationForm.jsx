@@ -100,12 +100,14 @@ const EducationForm = () => {
                 return updatedDetails;
               })
             }
-          /></td><td>
+          /></td><td  style={{padding: 10}}>
           <button onClick={(e) => handleRemoveEducation(index, e)}>Remove</button>
+          </td><td>
+          <button onClick={handleAddEducation}>Add</button>
           </td>
           </tr>
       ))}
-      <button className='logOutBtn' onClick={handleAddEducation}>Add</button>
+     
     </div>
   );
 };
