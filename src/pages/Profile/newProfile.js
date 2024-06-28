@@ -3,11 +3,7 @@ import { useState } from "react";
 import skillsData from './countries.json';
 import EducationForm from "./EducationForm";
 import ExperienceForm from "./ExperienceForm";
-import CityDropdown from "./cityDropdown";
-import ComboBox from "./comboBox";
-import CityComboBox from "./newCombox";
 import CityComboBox1 from "./MaterialDropdown";
-import StyleComboBox from "./styleComboBox";
 import ComboBoxGeneric from "./MaterialDropGdown";
 
 const NewProfile = () => {
