@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 
-const ExperienceForm = () => {
+const ExperienceForm = ({ onCompaniesChange}) => {
   const [experienceDetails, setExperienceDetails] = useState([{
     companyName: '',
     designation: '',
@@ -11,6 +11,7 @@ const ExperienceForm = () => {
 
   const handleAddExperience = (event) => {
     event.preventDefault();
+
     const newExperience = {
     companyName: '',
     designation: '',
@@ -18,6 +19,9 @@ const ExperienceForm = () => {
     endDate: ''
     };
     setExperienceDetails([...experienceDetails, newExperience]);
+
+    onCompaniesChange(experienceDetails);
+
   };
 
   const handleRemoveExperience = (index,event) => {
@@ -27,6 +31,13 @@ const ExperienceForm = () => {
 
   const [fromDate, setFromDate] = useState('');
   const [toDate, setToDate] = useState('');
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+    onCompaniesChange(experienceDetails);
+  };
 
   const handleFromDateChange = (e) => {
     const value = e.target.value;
@@ -122,9 +133,15 @@ const ExperienceForm = () => {
           </td>
           </tr>
       ))} 
-      <div>
-      
+     
+      <div className='form-group column'>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
       </div>
+      <div className='form-group column'>Furnished Experience Details</div>
     </div>
     
   );

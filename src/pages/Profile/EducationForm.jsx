@@ -1,6 +1,7 @@
+import { Checkbox } from '@mui/material';
 import React, { useContext, useState } from 'react';
 
-const EducationForm = () => {
+const EducationForm = ({onEducationChange}) => {
   const [educationDetails, setEducationDetails] = useState([{
     degree: '',
     institution: '',
@@ -9,6 +10,13 @@ const EducationForm = () => {
     university: ''
   }]);
   //const { theme, toggleTheme } = useContext(ThemeContext);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const handleCheckboxChange = (e) => {
+    setIsChecked(e.target.checked);
+    onEducationChange(educationDetails);
+
+  };
 
   const handleAddEducation = (event) => {
     event.preventDefault();
@@ -20,12 +28,21 @@ const EducationForm = () => {
       university: ''
     };
     setEducationDetails([...educationDetails, newEducation]);
+
+    onEducationChange(educationDetails);
+
   };
 
   const handleRemoveEducation = (index,event) => {
     event.preventDefault();
     setEducationDetails(educationDetails.filter((_, i) => i !== index));
   };
+
+  const handleEducation = (index,event) => {
+    event.preventDefault();
+    setEducationDetails(educationDetails.filter((_, i) => i !== index));
+  };
+  
 
   return (
     <div className="form-group row">
@@ -107,7 +124,16 @@ const EducationForm = () => {
           </td>
           </tr>
       ))}
-     
+      
+       
+      <div className='form-group column'>
+        <input
+          type="checkbox"
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+        />
+      </div>
+      <div className='form-group column'>Furnished All Education Details</div>
     </div>
   );
 };

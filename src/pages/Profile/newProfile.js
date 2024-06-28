@@ -7,6 +7,8 @@ import CityDropdown from "./cityDropdown";
 import ComboBox from "./comboBox";
 import CityComboBox from "./newCombox";
 import CityComboBox1 from "./MaterialDropdown";
+import StyleComboBox from "./styleComboBox";
+import ComboBoxGeneric from "./MaterialDropGdown";
 
 const NewProfile = () => {
   
@@ -15,6 +17,21 @@ const NewProfile = () => {
   const [primarySkillSets, setPrimarySkillSets] = useState('');
   const [secondarySkillSets, setSecondarySkillSets] = useState('');
   const [documentType, setDocumentType] = useState('');
+  const [companies, setCompanies] = useState([]);
+  const [education, setEducation] = useState([]);
+  const [sourceType, setSourceType] = useState('');
+  
+
+  const handleCompaniesChange = (newCompanies) => {
+    setCompanies(newCompanies);
+    console.log('test');
+  };
+
+  const handleEducationChange = (newCompanies) => {
+    setEducation(newCompanies);
+    console.log('test');
+  };
+
   const [formData, setFormData] = useState({
     candidateId: '',
     createdDate: '',
@@ -57,6 +74,8 @@ const NewProfile = () => {
 
   const [errors, setErrors] = useState({});
   const [dob, setDob] = useState({});
+  const [loc, setLoc] = useState('');
+  const [prefLoc, setPrefLoc] = useState('');
 
   const handlePrimarySkillS = (e) => {
     const value = Array.from(e.target.selectedOptions, option => option.value);
@@ -73,7 +92,12 @@ const NewProfile = () => {
     const validationErrors = validateForm();
     if (Object.keys(validationErrors).length === 0) {
       // Submit form data
+      
+      formData.companies=companies;
+      formData.education=education;
       console.log(formData);
+      //console.log(companies);
+      //console.log(education);
     } else {
       setErrors(validationErrors);
     }
@@ -161,22 +185,18 @@ const NewProfile = () => {
       errors.phone = 'Phone number is required';
     } else if (!/^\d{10}$/.test(formData.phone)) {
       errors.phone = 'Phone number should be 10 digits';
-    } else if (/^\d{10}$/.test(formData.phone)) {
-      errors.phone = '';
-    }
+    } 
 
     // Email validation
     if (!formData.email.trim()) {
       errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = 'Invalid email format';
-    } else if (/\S+@\S+\.\S+/.test(formData.email)) {
-      errors.email = '';
-    }
+    } 
 
 
     // currentLocation validation
-    if (!formData.currentLocation.trim()) {
+    /*if (!formData.currentLocation.trim()) {
       errors.currentLocation = 'currentLocation is required';
     } else {
       errors.currentLocation = '';
@@ -187,68 +207,58 @@ const NewProfile = () => {
       errors.prefLocation = 'prefLocation is required';
     } else {
       errors.prefLocation = '';
-    }
+    }*/
+
+      if (!loc.trim()) {
+        errors.prefLocation = 'prefLocation is required';
+      }
+
+      if (!prefLoc.trim()) {
+        errors.prefLocation = 'prefLocation is required';
+      } 
 
         // currentLocation validation
         if (!formData.currentOrganization.trim()) {
           errors.currentOrganization = 'currentOrganization is required';
-        } else {
-          errors.currentOrganization = '';
-        }
+        } 
 
         
 
         if (!formData.currentCtc.trim()) {
           errors.currentCtc = 'currentCtc is required';
-        } else {
-          errors.currentCtc = '';
-        }
-
+        } 
         
 
         if (!formData.noticePeriod.trim()) {
           errors.noticePeriod = 'noticePeriod is required';
-        } else {
-          errors.noticePeriod = '';
         }
 
         
 
         if (!formData.totExp.trim()) {
           errors.totExp = 'totExp is required';
-        } else {
-          errors.totExp = '';
-        }
-
+        } 
         
 
         if (!formData.issueDate.trim()) {
           errors.issueDate = 'issueDate is required';
-        } else {
-          errors.issueDate = '';
-        }
+        } 
 
         
 
         if (!formData.expiryDate.trim()) {
           errors.expiryDate = 'expiryDate is required';
-        } else {
-          errors.expiryDate = '';
-        }
+        } 
 
         
         if (!formData.sourceType.trim()) {
           errors.sourceType = 'sourceType is required';
-        } else {
-          errors.sourceType = '';
-        }
+        } 
 
         
         if (!formData.sourceName.trim()) {
           errors.sourceName = 'sourceName is required';
-        } else {
-          errors.sourceName = '';
-        }
+        } 
     /*if (!formData.dob.trim()) {
       //errors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
@@ -266,6 +276,18 @@ const NewProfile = () => {
     // Add more validation rules for other fields
 
     return errors;
+  };
+
+  const handleChild1ValueChange = (value) => {
+    console.log('hey');
+    console.log(value);
+    setLoc(value);
+  };
+
+  const handleChild2ValueChange = (value) => {
+    console.log('hey');
+    //setLoc(value);
+    setPrefLoc(value);
   };
 
   return (
@@ -529,7 +551,7 @@ const NewProfile = () => {
           onChange={handleInputChange}
           required
         />*/}
-        <CityComboBox1/>
+        <CityComboBox1 id="1" onChildValueChange={handleChild1ValueChange}/>
       </div>
       <div className="form-group column">
         <label htmlFor="prefLocation">Pref Location*:</label>
@@ -541,7 +563,7 @@ const NewProfile = () => {
           onChange={handleInputChange}
           required
         />*/}
-        <CityComboBox1/>
+        <CityComboBox1 id="2" onChildValueChange={handleChild2ValueChange}/>
 
       </div>
       <div className="form-group column">
@@ -597,6 +619,7 @@ const NewProfile = () => {
           required
           style={{ borderColor: errors.noticePeriod ? 'red' : '' }}
           />
+          
            {errors.noticePeriod && <span style={{ color: 'red' }}>{errors.noticePeriod}</span>}
       </div>
       <div className="form-group column">
@@ -685,14 +708,20 @@ const NewProfile = () => {
       <div className="row">
       <div className="form-group column">
         <label htmlFor="sourceType">Source Type*:</label>
-        <input
-          type="text"
+        
+
+      <select
           id="sourceType"
-          name="sourceType"
           value={formData.sourceType}
-          onChange={handleInputChange}
-          required
-        />
+          onChange={(event) => setSourceType(event.target.value)}
+        >
+          <option value="">Select</option>
+          <option value="jobBoard">Job Board</option>
+          <option value="supplier">Supplier</option>
+          <option value="organization">Organization</option>
+          <option value="other">other</option>
+        </select>
+        <ComboBoxGeneric id="1" ifield="77" rfield="154"/>
       </div>
       <div className="form-group column">
         <label htmlFor="sourceName">Source Name*:</label>
@@ -719,20 +748,25 @@ const NewProfile = () => {
         <label htmlFor="preferredJob">Preferred Job:</label>
         <CityComboBox1/>
       </div>*/}
+      <div className="form-group column">
+        
+       {/*<StyleComboBox/>*/}
+        </div>
       </div>
 
       <div className="row heading heading">
         <label>Employment History</label>
       </div>
       <div className="row" style={{borderWidth: 2,backgroundColor:'lavendar'}}>
-       <ExperienceForm/>
+       <ExperienceForm companies={companies} onCompaniesChange={handleCompaniesChange}/>
+       
       </div> 
      
       <div className="row heading heading">
         <label>Education Info</label>
       </div>
       <div className="row" style={{borderWidth: 2,backgroundColor:'lavendar'}}>
-       <EducationForm/>
+       <EducationForm  education= {education} onEducationChange={handleEducationChange} />
       </div> 
       <div className="row" style={{padding: 10}}>
        
@@ -746,6 +780,7 @@ const NewProfile = () => {
     <ComboBox/>
     <CityComboBox></CityComboBox>
    */}
+    
     </div>
 
   );
